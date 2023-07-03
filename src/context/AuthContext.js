@@ -47,7 +47,9 @@ function AuthProvider({ children }) {
 				setStatus({status:true,type:"error",text:error.response.data.error})
         	}
         }
-	const guestLogin = async () => {
+	const guestLogin = async (setState) => {
+		setState(true);
+
 		try {
 			const loginResponse = await axios.post("https://shopruv.onrender.com/api/accounts/login/", {
 				email: "okay2@gmail.com",
@@ -84,8 +86,9 @@ function AuthProvider({ children }) {
 			}
 
 			localStorage.setItem("user-token", encodedToken);
-
+			setState(false)
 		} catch (error) {
+			setState(false)
 		}
 	};
 

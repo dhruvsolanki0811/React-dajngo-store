@@ -1,10 +1,10 @@
 import "./Sidebar.css";
 import { aboutUsMenu, contactUsMenu, navItems } from "../navItems";
-// import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 function Sidebar() {
-//   const { userState, logOutUser } = useAuthContext();
+  const { userState, logoutUser } = useAuthContext();
   const navigate = useNavigate();
 
   return (
@@ -12,12 +12,12 @@ function Sidebar() {
       <section className="sidebar">
         <div className="sidebar-header">
           <span className="welcome-header txt-sm bold">Welcome</span>
-          {/* {userState.id */}
-           {false ? (
+          {userState.id
+           ? (
             <Link to="/login">
               <div
                 onClick={() => {
-                //   logOutUser();
+                  logoutUser();
                   navigate("/");
                 }}
                 className=" register lt-bold"

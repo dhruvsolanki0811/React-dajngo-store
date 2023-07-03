@@ -9,7 +9,8 @@ import { useProductContext } from "../../../../context/ProductContext";
 function MobFilterPanel() {
   const { productStates, dispatch } = useProductContext();
   const filterProperties = Object.keys(filtersData);
-  const [selectedfilterProperty, setSelectedFilterProperty] = useState("brands");
+  const [selectedfilterProperty, setSelectedFilterProperty] = useState("brand_name");
+
   return (
     <div className="mob-filter-panel">
       <div className="flex mob-filter-header">

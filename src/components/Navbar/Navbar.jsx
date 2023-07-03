@@ -66,7 +66,7 @@ const Navbar = ({ menuRequired=false, navTxt, logoRemove }) => {
             })}
           </ul>
           <div className="flex nav-icon-container">
-            <div className="flex search-container ">
+            {/* <div className="flex search-container ">
               <input
                 className="search-input"
                 type="text"
@@ -75,7 +75,7 @@ const Navbar = ({ menuRequired=false, navTxt, logoRemove }) => {
               <div className="search-icon-container">
                 <BiSearch className="search-btn" />
               </div>
-            </div>
+            </div> */}
 {/* 
             {showSearchModal && (
           <div className="search-bar-modal">

@@ -35,7 +35,7 @@ function AuthLogin() {
 
   function signInAsGuest(e) {
     e.preventDefault();
-    guestLogin();
+    guestLogin(setGuest);
   }
 
   function userLogin(e) {

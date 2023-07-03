@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import { HomePage,ErrorPage,ProductListing, ProductDetailPage, AuthSignUp, AuthLogin, Order, UserOrders} from './pages/pages'
+import { HomePage,ErrorPage,ProductListing, ProductDetailPage, AuthSignUp, AuthLogin, Order, UserOrders, MobFilterPanel} from './pages/pages'
 
 import { RequireAuth } from "./pages/AuthenticationPage/AuthRoutes/require-auth";
 import { RestrictAuth } from "./pages/AuthenticationPage/AuthRoutes/restrict-auth";
@@ -19,6 +19,8 @@ function RoutesPath() {
             <Route element={<RestrictAuth />}>
         <Route path="/login" element={<AuthLogin />} />
         <Route path="/signup" element={<AuthSignUp />} />
+        <Route path="/filter" element={<MobFilterPanel />} />
+
       </Route>
 
       <Route element={<RequireAuth />}>
@@ -26,6 +28,7 @@ function RoutesPath() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path='/order' element={<Order/>}/>
         {/* <Route path='/user/orders' element={<UserOrders/>}/> */}
+
       </Route>
         </Routes>
     </>)
