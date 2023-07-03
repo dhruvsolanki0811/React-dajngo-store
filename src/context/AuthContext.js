@@ -4,7 +4,8 @@ import axios from "axios";
 import { useCartContext } from "./cartContext";
 import { useWishlistContext } from "./wishlistContext";
 // import { useNavigate } from 'react-router-dom'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { useLocalStorageGetItem, useLocalStorageSetItem } from "../customHooks/customHooks";
 const AuthContext = createContext();
@@ -38,13 +39,20 @@ function AuthProvider({ children }) {
 					setAuthTokens(response.data.refresh)
 					
 					localStorage.setItem('authTokens', JSON.stringify(response.data.refresh))
-					setStatus({status:true,type:"success",text:"Successful login!"})
-
+					
+					// setStatus({status:true,type:"success",text:"Successful login!"})
+					toast.success("Successfull login", {
+						position: toast.POSITION.TOP_RIGHT
+					})
 				}
+				
         	} catch (error) {
         		setState(false);
         		console.log(error);
-				setStatus({status:true,type:"error",text:error.response.data.error})
+				toast.error(error.response.data.error, {
+					position: toast.POSITION.TOP_RIGHT
+				})
+				// setStatus({status:true,type:"error",text:error.response.data.error})
         	}
         }
 	const guestLogin = async (setState) => {
@@ -63,8 +71,10 @@ function AuthProvider({ children }) {
 				localStorage.setItem('authTokens', refresh)
 				localStorage.setItem("user-token", encodedToken);
 				setAuthTokens(loginResponse.data.refresh)
-				setStatus({status:true,type:"success",text:"Successfull Guest login!"})
-
+				toast.success("Successful login!", {
+					position: toast.POSITION.TOP_RIGHT
+				})
+				
 			}
 
 			const getCartData = await axios.get("https://shopruv.onrender.com/api/cart/", {
@@ -113,12 +123,18 @@ function AuthProvider({ children }) {
 				localStorage.setItem("user-token", encodedToken);
 				setAuthTokens(response.data.refresh)
 				localStorage.setItem('authTokens', JSON.stringify(response.data.refresh))
-				setStatus({status:true,type:"success",text:"Successful login!"})
+				
+				// setStatus({status:true,type:"success",text:"Successful login!"})
+				toast.success("Successful login!", {
+					position: toast.POSITION.TOP_RIGHT
+				})
 			}
 		} catch (error) {
 			setState(false);
-			setStatus({status:true,type:"error",text:error.response.data.error})
-
+			// setStatus({status:true,type:"error",text:error.response.data.error})
+			toast.error(error.response.data.error, {
+				position: toast.POSITION.TOP_RIGHT
+			})
 		}
 	}
 	// function logOutUser() {
@@ -134,6 +150,9 @@ function AuthProvider({ children }) {
         // navigate('/login')
 		localStorage.clear();
 		// setStatus({status:true,type:"success",text:"Successfull Logout!"})
+		// toast.error("Successfull Logout!", {
+		// 	position: toast.POSITION.TOP_RIGHT
+		// })
     }
 
 
@@ -229,6 +248,8 @@ function AuthProvider({ children }) {
 			  , guestLogin ,status,setStatus
 			  }}>
 			{children}
+			<ToastContainer />
+
 		</AuthContext.Provider>
 	);
 }

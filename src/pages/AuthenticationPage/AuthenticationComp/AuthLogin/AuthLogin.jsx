@@ -42,26 +42,7 @@ function AuthLogin() {
     e.preventDefault();
     logInUser(inputState.email, inputState.password, setSubmitState);
   }
-  const showToastMessage = (status,type,text) => {
-    if (status){
-      if(type=='success'){
-    toast.success(text, {
-        position: toast.POSITION.TOP_RIGHT
-    });}
-    else{
-    if(type=='error'){
-    toast.error(text, {
-      position: toast.POSITION.TOP_RIGHT
-  });
-}}
-  setStatus({status:false,type:"",text:""})
-}
-};
-
-  useEffect(() => {
-    showToastMessage(status.status,status.type,status.text)
-  }, [status])
-  
+ 
   return (
     <>
           <ToastContainer />
