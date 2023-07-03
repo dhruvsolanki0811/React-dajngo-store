@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./homePage.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Navbar,Footer} from "../../components/components";
 import {
   dealsImages,
@@ -7,14 +9,37 @@ import {
   homeDecorImgs,
   roundImgCategory,
 } from "./homePageData";
+import { useAuthContext } from "../../context/AuthContext";
+
 import {  useNavigate } from "react-router-dom";
 
 
 function HomePage() {
   const navigate = useNavigate();
+  const { status,setStatus} = useAuthContext();
 
+  const showToastMessage = (status,type,text) => {
+
+    if (status){
+      if(type=='success'){
+    toast.success(text, {
+        position: toast.POSITION.TOP_RIGHT
+    });}
+    else if(type=='error'){
+    toast.error(text, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+}
+  setStatus({status:false,type:"",text:""})
+}
+};
+
+  useEffect(() => {
+    showToastMessage(status.status,status.type,status.text)
+  }, [status])
   return (
     <>
+    <ToastContainer/>
     <header>
     <div className="pointer relative flex display-img-container w-100">
           <img

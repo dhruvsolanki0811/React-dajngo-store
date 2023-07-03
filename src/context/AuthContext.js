@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect } from "react";
 import axios from "axios";
 
-// import { useCartContext } from "./cartContext";
-// import { useWishlistContext } from "./wishlistContext";
+import { useCartContext } from "./cartContext";
+import { useWishlistContext } from "./wishlistContext";
 // import { useNavigate } from 'react-router-dom'
 
 import { useState } from "react";
@@ -11,12 +11,13 @@ const AuthContext = createContext();
 
 
 function AuthProvider({ children }) {
-	// const { setCart } = useCartContext();
-	// const { setWishlist } = useWishlistContext();
+	const { setCart } = useCartContext();
+	const { setWishlist } = useWishlistContext();
 	let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
 
 	const [userState, setUserState] = useState({ id: "" });
-	
+	const [status, setStatus] = useState({status:false,type:"",text:""});
+
 	
 	let [loading, setLoading] = useState(true)
 	// const navigate = useNavigate();
@@ -37,45 +38,56 @@ function AuthProvider({ children }) {
 					setAuthTokens(response.data.refresh)
 					
 					localStorage.setItem('authTokens', JSON.stringify(response.data.refresh))
+					setStatus({status:true,type:"success",text:"Successful login!"})
+
 				}
         	} catch (error) {
         		setState(false);
         		console.log(error);
+				setStatus({status:true,type:"error",text:error.response.data.error})
         	}
         }
-	// const guestLogin = async () => {
-	// 	try {
-	// 		const loginResponse = await axios.post("/api/auth/login", {
-	// 			email: "shekhardhangar@yahoo.com",
-	// 			password: "shekhar",
-	// 		});
-	// 		const encodedToken = loginResponse.data.encodedToken;
-	// 		if (loginResponse) {
-	// 			setUserState({ ...userState, id: encodedToken });
-	// 		}
+	const guestLogin = async () => {
+		try {
+			const loginResponse = await axios.post("https://shopruv.onrender.com/api/accounts/login/", {
+				email: "okay2@gmail.com",
+				password: "okay@123",
+			});
+			
+			const encodedToken = loginResponse.data.access;
+			const refresh = loginResponse.data.refresh;
+			if (loginResponse) {
+				setUserState({ ...userState, id: encodedToken });
+				localStorage.setItem('authTokens', refresh)
+				localStorage.setItem("user-token", encodedToken);
+				setAuthTokens(loginResponse.data.refresh)
+				setStatus({status:true,type:"success",text:"Successfull Guest login!"})
 
-	// 		const getCartData = await axios.get("/api/user/cart", {
-	// 			headers: {
-	// 				authorization: encodedToken,
-	// 			},
-	// 		});
-	// 		if (getCartData) {
-	// 			setCart(getCartData.data.cart);
-	// 		}
+			}
 
-	// 		const getWishlistData = await axios.get("/api/user/wishlist", {
-	// 			headers: {
-	// 				authorization: encodedToken,
-	// 			},
-	// 		});
-	// 		if (getWishlistData) {
-	// 			setWishlist(getWishlistData.data.wishlist);
-	// 		}
+			const getCartData = await axios.get("https://shopruv.onrender.com/api/cart/", {
+				headers: {
+					authorization: "Bearer "+encodedToken,
+				},
+			});
+			if (getCartData) {
+				setCart(getCartData.data.cart);
+			}
 
-	// 		useLocalStorageSetItem("user-token", encodedToken);
-	// 	} catch (error) {
-	// 	}
-	// };
+			const getWishlistData = await axios.get("ttps://shopruv.onrender.com/api/wishlist", {
+				headers: {
+					authorization: "Bearer "+encodedToken,
+				},
+			});
+			if (getWishlistData) {
+				setWishlist(getWishlistData.data.wishlist);
+			}
+
+			localStorage.setItem("user-token", encodedToken);
+
+		} catch (error) {
+		}
+	};
 
 	async function signUpUser(firstName, lastName, email, password,password2,username,phone,setState) {
 		try {
@@ -98,10 +110,12 @@ function AuthProvider({ children }) {
 				localStorage.setItem("user-token", encodedToken);
 				setAuthTokens(response.data.refresh)
 				localStorage.setItem('authTokens', JSON.stringify(response.data.refresh))
+				setStatus({status:true,type:"success",text:"Successful login!"})
 			}
 		} catch (error) {
-			console.log(error);
 			setState(false);
+			setStatus({status:true,type:"error",text:error.response.data.error})
+
 		}
 	}
 	// function logOutUser() {
@@ -116,7 +130,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem('authTokens')
         // navigate('/login')
 		localStorage.clear();
-
+		setStatus({status:true,type:"success",text:"Successfull Logout!"})
     }
 
 
@@ -209,7 +223,7 @@ function AuthProvider({ children }) {
 			 logInUser, logoutUser,
 			  signUpUser, 
 			  userState
-			//   , guestLogin 
+			  , guestLogin ,status,setStatus
 			  }}>
 			{children}
 		</AuthContext.Provider>

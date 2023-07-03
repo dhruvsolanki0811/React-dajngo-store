@@ -9,13 +9,17 @@ import {
 import "./AuthLogin.css";
 import { useNavigate } from "react-router-dom";
 // import { ForgotPassword } from "../ForgotPassword/ForgotPassword";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loading, Navbar } from "../../../../components/components";
 import { useInputHandler } from "../../authFunctions";
 import { useAuthContext } from "../../../../context/AuthContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function AuthLogin() {
+  
   const navigate = useNavigate();
-  const { logInUser } = useAuthContext();
+  const { logInUser,guestLogin,status,setStatus } = useAuthContext();
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [submitState, setSubmitState] = useState(false);
@@ -29,17 +33,39 @@ function AuthLogin() {
     setPasswordShown((passwordShown) => !passwordShown);
   }
 
-//   function signInAsGuest(e) {
-//     e.preventDefault();
-//     guestLogin();
-//   }
+  function signInAsGuest(e) {
+    e.preventDefault();
+    guestLogin();
+  }
 
   function userLogin(e) {
     e.preventDefault();
     logInUser(inputState.email, inputState.password, setSubmitState);
   }
+  const showToastMessage = (status,type,text) => {
+    if (status){
+      if(type=='success'){
+    toast.success(text, {
+        position: toast.POSITION.TOP_RIGHT
+    });}
+    else{
+    if(type=='error'){
+    toast.error(text, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+}}
+  setStatus({status:false,type:"",text:""})
+}
+};
+
+  useEffect(() => {
+    showToastMessage(status.status,status.type,status.text)
+  }, [status])
+  
   return (
     <>
+          <ToastContainer />
+
       <Navbar isMenuRequired={false} />
       <div className="flex form-container">
         <form className="login-form">
@@ -101,9 +127,9 @@ function AuthLogin() {
           <button onClick={userLogin} className="btn btn-md login-btn">
             {submitState ? <Loading width="15px" height="15px" /> : `Sign in`}
           </button>
-          {/* <button onClick={signInAsGuest} className="btn btn-sm m-1"> */}
-            {/* {Guest ? <Loading width="15px" height="15px" /> : `Sign As Guest`} */}
-          {/* </button> */}
+          <button onClick={signInAsGuest} className="btn btn-sm m-1">
+            {Guest ? <Loading width="15px" height="15px" /> : `Sign As Guest`}
+          </button> 
           <div className="signup-way">
             <span className="account-no">Don't have an Account?</span>
             <p className="lt-bold try-btn" onClick={() => navigate("/signup")}>
@@ -112,6 +138,7 @@ function AuthLogin() {
           </div>
         </form>
       </div>
+
     </>
   );
 }

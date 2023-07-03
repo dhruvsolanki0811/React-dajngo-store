@@ -1,6 +1,6 @@
 import "../AuthenticationComp.css";
 import {  useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   FaUserAlt,
   MdEmail,
@@ -13,10 +13,12 @@ import { Loading, Navbar } from "../../../../components/components";
 import { useInputHandler } from "../../authFunctions";
 import { useAuthContext } from "../../../../context/AuthContext";
   // 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function AuthSignUp() {
     const [passwordShown, setPasswordShown] = useState(false);
     const [formSubmitState, setformSubmitState] = useState(false);
-    const { signUpUser } = useAuthContext();
+    const { signUpUser ,status,setStatus} = useAuthContext();
     function toggleShowPassword() {
       setPasswordShown((passwordShown) => !passwordShown);
     }
@@ -42,12 +44,38 @@ function AuthSignUp() {
       if(!passwordMatch && !passwordExpressionMatch){
         signUpUser(inputState.firstName,inputState.lastName,inputState.email,inputState.password,inputState.password2,inputState.username,inputState.phone,setformSubmitState);
         
-    }else{
-        console.log('password must contain more than 5 characters with number,alphabet and atleast 1 special character')
+    }else if(passwordMatch){
+        // console.log('password must contain more than 5 characters with number,alphabet and atleast 1 special character')
+        setStatus({status:true,type:"error",text:"Make sure both passwords are same"})
+      }
+      else if(passwordExpression){
+        setStatus({status:true,type:"error",text:'password must contain more than 5 characters with number,alphabet and atleast 1 special character'})
+        // signUpUser(inputState.firstName,inputState.lastName,inputState.email,inputState.password,inputState.password2,inputState.username,inputState.phone,setformSubmitState);
+
       }
     }
+
+    const showToastMessage = (status,type,text) => {
+      if (status){
+        if(type=='success'){
+      toast.success(text, {
+          position: toast.POSITION.TOP_RIGHT
+      });}
+      else if(type=='error'){
+      toast.error(text, {
+        position: toast.POSITION.TOP_RIGHT
+    });
+  }
+    setStatus({status:false,type:"",text:""})
+  }
+  };
+  
+    useEffect(() => {
+      showToastMessage(status.status,status.type,status.text)
+    }, [status])
     return (
       <>
+      <ToastContainer/>
         <Navbar isMenuRequired={false} />
         <section className="flex form-container">
           <form
