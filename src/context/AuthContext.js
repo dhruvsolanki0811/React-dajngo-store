@@ -130,7 +130,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem('authTokens')
         // navigate('/login')
 		localStorage.clear();
-		setStatus({status:true,type:"success",text:"Successfull Logout!"})
+		// setStatus({status:true,type:"success",text:"Successfull Logout!"})
     }
 
 
