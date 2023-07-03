@@ -1,0 +1,80 @@
+@media only screen and (max-width: 62.5em) {
+    .title {
+      font-size: 3.25rem;
+    }
+  }
+  
+  @media only screen and (max-width: 50em) {
+    .search-container {
+      display: none;
+    }
+    .nav-link-container {
+      display: none;
+    }
+    .logo-remove {
+      display: none;
+    }
+    .mobile-search-btn{
+      display: inline-block;
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-bottom: 5px;
+    }
+    .search-btn{
+      width: 3.25rem; 
+      height: 3.25rem;
+    }
+  
+    .nav-txt {
+      font-size: 1.5em;
+    }
+    .logo-container {
+      padding-inline-start: 5px;
+    }
+    .menu-icon {
+      display: inline-block;
+    }
+    .nav-icon-grp {
+      width: 27em;
+      padding-left: 5px;
+      align-items: center;
+      display: flex;
+      gap: 5px;
+    }
+  }
+  @media only screen and (max-width: 48em) {
+    .menu-list > li {
+      line-height: 4.5rem;
+    }
+  }
+  @media only screen and (max-width: 38.125em) {
+    .nav-icon-container .icon-container .icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .user-icon-box,
+    .nav-icon-container .icon-container .icon-txt {
+      display: none;
+    }
+    .mobile-search-btn{
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-bottom: 0;
+    }
+  
+    .number-badge {
+      top: 1rem;
+      right: -1rem;
+    }
+  }
+  
+  @media only screen and (max-width: 22.1875em) {
+    .nav-icon-container .icon-container .icon,
+    .back-arrow {
+      width: 2em;
+      height: 2em;
+    }
+    .nav-icon-container .icon-container {
+      margin: 7px;
+    }
+  }

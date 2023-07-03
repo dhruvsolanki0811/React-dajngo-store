@@ -1,0 +1,19 @@
+.filter-sort-btns {
+    position: fixed;
+    bottom: -1.25rem;
+    height: 5rem;
+    z-index: 10;
+    background-color: var(--clr-white);
+    display: none;
+  }
+  
+  .plain-btn {
+    width: 50vw;
+  }
+  
+  @media only screen and (max-width: 50em) {
+    .filter-sort-btns {
+      display: block;
+    }
+  }
+  

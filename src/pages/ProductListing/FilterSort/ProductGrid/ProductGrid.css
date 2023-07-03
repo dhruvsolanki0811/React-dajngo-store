@@ -1,0 +1,10 @@
+.product-list-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    /* margin-top: 10rem */
+  }
+  .product-page-link {
+    padding-inline: 1rem;
+  }
+  

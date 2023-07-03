@@ -1,0 +1,96 @@
+.error-page {
+    height: 100vh;
+    background-image: url(//www.mantralabsglobal.com/wp-content/themes/spiral-child/images/error_404/white_grain.png),
+      url(//www.mantralabsglobal.com/wp-content/themes/spiral-child/images/film_grain.png);
+      background-color: var(--clr-white);
+    }
+  
+  .error-title {
+    font-size: 5rem;
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+  .error-desc {
+      text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--clr-black);
+  }
+  .error-letter {
+    font-family: "poppins", sans-serif;
+    font-size: 15rem;
+    color: var(--clr-black);
+    font-weight: 700;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+  }
+  .error-route-btn {
+    border: 3px solid var(--clr-black);
+    margin-top: 5rem;
+    background-color: transparent;
+  }
+  .count-txt {
+    padding: 3px 0;
+    margin: 1rem 0;
+    border-bottom: 3.5px solid var(--clr-black);
+  }
+  @media only screen and (max-width:47.5em) {
+    .error-title {
+      font-size: 3rem;
+    }
+    .error-letter {
+        font-size: 10rem;
+        height: 10rem;
+    }
+    .error-desc {
+  
+      font-size: 2.25rem;
+    }
+  }
+  
+  @media only screen and (max-width:37.5em) {
+      .error-title {
+          font-size: 2.5rem;
+        }
+        .error-letter {
+            font-size: 10rem;
+            height: 10rem;
+        }
+        .error-desc {
+          font-size: 2rem;
+        }
+  }
+  
+  @media only screen and (max-width:28.125em) {
+      .error-title {
+          font-size: 2rem;
+        }
+        .error-letter {
+            font-size: 7.5rem;
+            height: 7.5rem;
+        }
+        .error-desc {
+          font-size: 1.5rem;
+        }  
+  }
+  
+  @media only screen and (max-width:22.5em) {
+      .error-title {
+          font-size: 1.75rem;
+        }
+        .error-letter {
+            font-size: 5rem;
+            height: 5rem;
+        }
+        .error-desc {
+          font-size: 1.25rem;
+        }  
+        .error-route-btn {
+            font-size: 2rem;
+        }
+        .count-txt {
+          font-size: 2rem;
+        }
+  }
+  

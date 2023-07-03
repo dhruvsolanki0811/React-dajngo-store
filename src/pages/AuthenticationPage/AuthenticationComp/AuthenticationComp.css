@@ -1,0 +1,19 @@
+.form-container{
+    margin-top: 7rem;
+    position: relative;
+    height: 40%;
+    width: 100%;
+    margin-inline: auto;
+}
+.account-no,.account-yes{
+    font-weight: 600;
+    font-size: 1.35rem; 
+}
+.try-btn{
+    cursor: pointer;
+    font-size: 1.75rem;
+    color: var(--primary-clr);
+}
+.warning-clr{
+    color: var(--danger-clr);
+}

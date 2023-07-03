@@ -1,0 +1,35 @@
+.mob-sort-container {
+    bottom: 0;
+    background-color: var(--clr-white);
+    height: max-content;
+    width: 100vw;
+    position: fixed;
+    font-weight: 600;
+    display: none;
+  }
+  .mob-sort-heading {
+    justify-content: flex-start;
+    font-size: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--clr-black);
+  }
+  
+  .mob-sort-items {
+    border-bottom: 1.5px solid var(--clr-grey);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-size: 1.75rem;
+  }
+  .sort-overlay {
+    inset: 0;
+    z-index: 60;
+    position: fixed;
+    background-color: var(--overlay-clr);
+  }
+  
+  @media only screen and (max-width: 800px) {
+    .mob-sort-container {
+      display: block;
+    }
+  }
+  

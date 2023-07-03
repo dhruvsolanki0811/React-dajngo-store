@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
-
+import {RoutesPath} from './Routes';
+import { getProductsData } from './serverCalls/getProductsData';
 function App() {
+  useEffect(() => {
+    getProductsData()
+  
+  },[] )
   return (
+  
+  
+  <>
+  
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RoutesPath />
     </div>
+  </>
   );
 }
 

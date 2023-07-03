@@ -1,0 +1,10 @@
+@import url("https://shed-ui.netlify.app/component.css");
+:root {
+  --discount-clr: #1c7228;
+  --clr-ratings: #efa41b;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+}

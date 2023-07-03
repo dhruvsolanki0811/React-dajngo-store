@@ -1,0 +1,18 @@
+.wishlist-product-list-container{
+    justify-items: center;
+    margin-top: 10rem;
+}
+
+.product-list-container .product-card-container{
+    width: 100%;
+    max-width: 30rem;
+}
+.wishlist-delete .icon:hover{
+    color: var(--primary-clr);
+}
+
+@media only screen and (max-width: 50em){
+    .wishlist-icon-box{
+        display: none;
+    }
+}

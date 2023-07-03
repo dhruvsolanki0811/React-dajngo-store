@@ -1,0 +1,113 @@
+.cart-product-box{
+    margin-bottom: 2rem;
+    border:1px solid var(--clr-grey);
+    padding:  1rem 5px;
+    max-width: 100rem;
+}
+.cart-product-box .cart-product-content{
+    padding: 0 5px;
+    justify-content: space-between;
+    height: max-content;
+}
+.cart-product-details{
+    max-width: 50%;
+    align-self: flex-start;
+    
+}
+ .cart-product-description{
+     font-size: 1.35rem;
+     margin-bottom: 5px;
+     height: max-content;
+}
+.cart-product-msg{
+    margin: 5px 0;
+    color: var(--discount-clr);
+}
+.cart-product-options{
+    justify-content: flex-start;
+    width: max-content;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+.select-size{
+    background-color: var(--clr-white);
+    padding: 2.5px 2px;
+    font-size: 1.5rem;
+}
+.qty-btn{
+padding: 0px 5px;
+font-size: 2rem;
+height: 25px;
+}
+.qty-value{
+text-align: center;
+  margin: 0px;
+border: 1px solid var(--clr-black);
+  width: 30px;
+height: 25px;
+  font-size: 1.5rem;
+}
+
+.cart-product-image{
+    width: 12rem;
+    min-width: 12rem;
+}
+.cart-product-image a img{
+    object-fit: cover;
+}
+
+
+.cart-btn-container{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.cart-btn-container .btn{
+    color: var(--clr-black);
+    border:1px solid var(--clr-grey);
+    min-width: 50%;
+    background-color: var(--clr-white);
+    height: 3.5rem;
+}
+
+
+@media only screen and (max-width:850px){
+    .cart-btn-container .btn-sm{
+        font-size: 1.5em;
+    }
+}
+
+
+@media only screen and (max-width:405px){
+    .cart-product-description,
+    .cart-og-price,
+    .cart-price-item{
+        font-size: 1.15em;
+    }
+    
+    .cart-product-price,
+    .cart-product-msg,
+    .btn-sm,
+    .cart-product-options{
+        flex-direction: column;
+    }
+    .select-size{
+        background-color: var(--clr-white);
+        padding: 2px;
+        font-size: 1.25rem;
+    }    
+    .qty-btn{
+        padding: 0px 2.5px;
+        font-size: 1.5em;
+        height: 25px;
+    }
+}
+
+@media only screen and (max-width:21.25em){
+   .cart-container .btn-sm{
+        font-size: 1.15em;
+        height: 2.25em;
+    }
+}

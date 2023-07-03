@@ -1,0 +1,110 @@
+.product-card-container {
+    width: 100%;
+  }
+  .ratings{
+    color: var(--clr-ratings);
+    margin-top: 5px ;
+  }
+  
+  .product-card-container .product-description {
+    text-transform: capitalize;
+  }
+  .icon-badge {
+    width: max-content;
+    position: absolute;
+    opacity: 1;
+    right: 1rem;
+    top: 1rem;
+    z-index: 2;
+    background-color: var(--clr-white);
+    border-radius: 50%;
+    padding: 0.5rem;
+  }
+  .icon-badge .icon:hover {
+    transform: scale(1.1);
+    color: var(--primary-clr);
+  }
+  .icon-badge .icon {
+    height: 2rem;
+  }
+  
+  .product-card-container{
+    max-width: 32rem;
+  }
+  
+  .primary-clr{
+    color: var(--primary-clr);
+  }
+  
+  
+  @media only screen and (max-width: 50em) {
+    .product-content .product-description {
+      font-size: 1.15em;
+    }
+  }
+  @media only screen and (max-width: 40em) {
+    .product-card-container {
+      padding-inline: 5px;
+    }
+  }
+  @media only screen and (max-width: 31.5625em) {
+    .icon-badge .icon {
+      height: 2em;
+    }
+  }
+  @media screen and (max-width: 28.75em) {
+    .btn-container .cart-btn {
+      height: 2.75rem;
+      font-size: 1.5rem;
+    }
+    .nav-txt {
+      font-size: 1.25em;
+    }
+  }
+  
+  @media only screen and (max-width: 25.3125em) {
+    .icon-badge .icon {
+      height: 1.75rem;
+    }
+    .icon-badge {
+      top: 5px;
+      padding: 3px;
+    }
+  
+    .product-card .product-content .product-title,
+    .product-content .product-description {
+      font-size: 1rem;
+    }
+    .product-price-details .product-price {
+      font-size: 1.5rem;
+    }
+    .product-price-details .og-price {
+      font-size: 1.5rem;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 21.5625em) {
+    .btn-container .cart-btn {
+      font-size: 1.25em;
+    }
+  }
+  @media only screen and (max-width: 19.6875em) {
+    .product-card .product-content .product-price-details > .price {
+      font-size: 1.5em;
+    }
+    .icon-badge {
+      top: 10px;
+      right: 7.5px;
+      width: 3em;
+      height: 3em;
+    }
+    .icon-badge .icon {
+      height: 2em;
+      width: 2em;
+    }
+    .btn-container .cart-btn {
+      font-size: 1.5em;
+    }
+  }
+  
