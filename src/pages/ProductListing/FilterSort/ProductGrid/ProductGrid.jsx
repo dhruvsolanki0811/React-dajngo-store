@@ -10,7 +10,7 @@ import {
   import { useProductContext } from "../../../../context/ProductContext";
   import { filtersData } from "../filterSortData";
 
-  const loadings = "loading";
+  let loadings = "Free Render backend might take some time";
 // import {
 //      getFilteredData,
 //     getRatingsData,
@@ -22,6 +22,9 @@ function ProductGrid() {
 
   const { productStates } = useProductContext();
   const [sortedProducts, setsortedProducts] = useState([])
+  
+
+
   useEffect(() => {
   const filteredProductsData = getFilteredData(productStates, filtersData);
   const ratingsData = getRatingsData(
@@ -30,14 +33,22 @@ function ProductGrid() {
   );
   const sortedProducts = getSortedData(ratingsData, productStates.sortBy);
     setsortedProducts(sortedProducts)
+  console.log(productStates.filterBy)
+
+
+
+  if(productStates.filterBy.brand_name.length>0 || productStates.filterBy.category.length>0 || productStates.filterBy.gender.length>0 || productStates.filterBy.size.length>0){
+    loadings="No such products!sorry"
+  }else{
+    loadings="Free Render backend might take some time"
+  }
   }, [productStates])
   
   return (
     <>
       <section className="product-list-container">
-      {sortedProducts.loader && loadings}
+      {sortedProducts.length==0 && loadings}
       
-      {/* {false && loadings} */}
       { sortedProducts.map((card) => (
         <ProductCard
           key={card.id}
